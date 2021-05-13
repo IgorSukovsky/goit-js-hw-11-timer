@@ -11,7 +11,7 @@ p {
   padding: 0;
 }
 #timer-1 {
-  font-family: "Share Tech Mono", monospace;
+  font-family: monospace;
   color: #ffffff;
   display: flex;
   justify-content: center;
