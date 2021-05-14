@@ -17,12 +17,14 @@ class CountdownTimer {
         `${this.selector} span[data-value="secs"]`
       ),
     };
-
-    this.run();
   }
   changeDate() {
     const time = this.targetDate.getTime() - new Date().getTime();
-    time > 0 ? this.calculateTime(time) : this.viewError();
+    if (time > 0) {
+      this.calculateTime(time);
+    } else {
+      this.viewError();
+    }
   }
   calculateTime(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -32,10 +34,10 @@ class CountdownTimer {
     this.changeElems(days, hours, mins, secs);
   }
   changeElems(days, hours, mins, secs) {
-    this.refs.daysElem.innerHTML = days;
-    this.refs.hoursElem.innerHTML = hours;
-    this.refs.minsElem.innerHTML = mins;
-    this.refs.secsElem.innerHTML = secs;
+    this.refs.daysElem.textContent = days;
+    this.refs.hoursElem.textContent = hours;
+    this.refs.minsElem.textContent = mins;
+    this.refs.secsElem.textContent = secs;
   }
   run() {
     this.changeDate();
@@ -44,11 +46,11 @@ class CountdownTimer {
     }, 1000);
   }
   viewError() {
-    document.querySelector(this.selector).innerHTML = "sorry!";
+    document.querySelector(this.selector).textContent = "sorry!";
   }
 }
-
-new CountdownTimer({
+const timer = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("may.18.2021"),
+  targetDate: new Date("may.25.2021"),
 });
+timer.run();
